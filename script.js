@@ -891,6 +891,132 @@ function clearDoctrines() {
 clearDoctrines();
 
 
+// ========== ФУНКЦІЯ ПОШУКУ ==========
+
+// Отримуємо елементи пошуку
+const searchInput = document.querySelector('#searchInput');
+const searchCharacters = document.querySelector('#searchCharacters');
+const searchDoctrines = document.querySelector('#searchDoctrines');
+
+// Пошук у списку елементів
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const listItems = itemsList.querySelectorAll('.list-item');
+        
+        let visibleCount = 0;
+        
+        listItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(searchTerm)) {
+                item.style.display = 'flex';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Показуємо повідомлення, якщо нічого не знайдено
+        if (listItems.length > 0 && visibleCount === 0) {
+            if (!document.querySelector('#noResults')) {
+                const noResults = document.createElement('p');
+                noResults.id = 'noResults';
+                noResults.className = 'empty-state';
+                noResults.textContent = '🔍 Нічого не знайдено';
+                itemsList.parentElement.appendChild(noResults);
+            }
+        } else {
+            const noResults = document.querySelector('#noResults');
+            if (noResults) {
+                noResults.remove();
+            }
+        }
+    });
+}
+
+// Пошук серед лідерів
+if (searchCharacters) {
+    searchCharacters.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const characterCards = document.querySelectorAll('.character-card');
+        
+        let visibleCount = 0;
+        
+        characterCards.forEach(card => {
+            const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const country = card.querySelector('p')?.textContent.toLowerCase() || '';
+            const ideology = card.querySelector('.ideology-badge')?.textContent.toLowerCase() || '';
+            
+            if (name.includes(searchTerm) || country.includes(searchTerm) || ideology.includes(searchTerm)) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Показуємо повідомлення, якщо нічого не знайдено
+        const container = document.querySelector('#charactersContainer');
+        let noResults = container.querySelector('#noCharResults');
+        
+        if (characterCards.length > 0 && visibleCount === 0) {
+            if (!noResults) {
+                noResults = document.createElement('p');
+                noResults.id = 'noCharResults';
+                noResults.className = 'empty-state';
+                noResults.textContent = '🔍 Лідерів не знайдено';
+                noResults.style.gridColumn = '1 / -1';
+                container.appendChild(noResults);
+            }
+        } else {
+            if (noResults) {
+                noResults.remove();
+            }
+        }
+    });
+}
+
+// Пошук серед доктрин
+if (searchDoctrines) {
+    searchDoctrines.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const doctrineCards = document.querySelectorAll('.doctrine-card');
+        
+        let visibleCount = 0;
+        
+        doctrineCards.forEach(card => {
+            const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const description = card.querySelector('.doctrine-description')?.textContent.toLowerCase() || '';
+            
+            if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Показуємо повідомлення, якщо нічого не знайдено
+        const container = document.querySelector('#doctrinesContainer');
+        let noResults = container.querySelector('#noDocResults');
+        
+        if (doctrineCards.length > 0 && visibleCount === 0) {
+            if (!noResults) {
+                noResults = document.createElement('p');
+                noResults.id = 'noDocResults';
+                noResults.className = 'empty-state';
+                noResults.textContent = '🔍 Доктрин не знайдено';
+                container.appendChild(noResults);
+            }
+        } else {
+            if (noResults) {
+                noResults.remove();
+            }
+        }
+    });
+}
+
+
 // ========== ДОДАТКОВА ІНФОРМАЦІЯ ==========
 console.log('✅ Script.js завантажено успішно!');
 console.log('📚 Використані методи DOM:');

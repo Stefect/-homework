@@ -71,6 +71,14 @@ h1 {
     margin-bottom: 20px;
 }
 
+.search-section {
+    margin-bottom: 15px;
+}
+
+.search-section input {
+    width: 100%;
+}
+
 input[type="text"] {
     flex: 1;
     padding: 12px 20px;

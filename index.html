@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>📝 Домашнє завдання - Робота з DOM</h1>
+        <h1>📝 Хойка база</h1>
         
         <!-- Основна секція з додаванням елементів -->
         <div class="card">
@@ -16,6 +16,9 @@
             <div class="input-section">
                 <input type="text" id="textInput" placeholder="Введіть текст...">
                 <button id="addButton">Додати</button>
+            </div>
+            <div class="search-section">
+                <input type="text" id="searchInput" placeholder="🔍 Пошук у списку...">
             </div>
             <div id="listContainer">
                 <ul id="itemsList"></ul>
@@ -33,17 +36,23 @@
                         <button id="loadCharactersBtn">Завантажити лідерів</button>
                         <button id="clearCharactersBtn" style="background: #ff4757;">Очистити</button>
                     </div>
+                    <div class="search-section">
+                        <input type="text" id="searchCharacters" placeholder="🔍 Пошук лідерів...">
+                    </div>
                     <div id="charactersContainer"></div>
                 </div>
             </div>
 
             <!-- Секція з доктринами -->
             <div class="card">
-                <h2>📚 Військові Доктрини HOI4</h2>
+                <h2>📚 Vojašові Доктрини HOI4</h2>
                 <div class="doctrines-section">
                     <div class="api-buttons">
                         <button id="loadDoctrinesBtn" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">Показати доктрини</button>
                         <button id="clearDoctrinesBtn" style="background: #ff4757;">Очистити</button>
+                    </div>
+                    <div class="search-section">
+                        <input type="text" id="searchDoctrines" placeholder="🔍 Пошук доктрин...">
                     </div>
                     <div id="doctrinesContainer"></div>
                 </div>
